@@ -3,7 +3,7 @@
 This repository contains convenience scripts for installing various popular machine learning libraries on NCAR HPC systems, including Derecho and Casper. Special attention will be paid towards ensuring compatibility with GPU hardware. These installs primarily utilize specific combinations of pre-built packages available via `conda` or `pip`. Currently supported packages are listed below:
 
 * [TensorFlow v2.11-2.15](tensorflow)
-* [PyTorch vX-X](pytorch)
+* [PyTorch v1.13.1-2.1.2](pytorch)
 * [Jax vX-X (TODO)](jax)
 * [Horovod (TODO)](horovod) for multi-node GPU computing with TensorFlow and PyTorch
 
