@@ -7,6 +7,8 @@ This repository contains convenience scripts for installing various popular mach
 * [Jax vX-X (TODO)](jax)
 * [Horovod (TODO)](horovod) for multi-node GPU computing with TensorFlow and PyTorch
 
+All installations will produce an associated YAML file which describes the software environment as installed. This file can be shared with colleagues or archived alongside scientific results to support reproducibility efforts.
+
 A future goal of this offering is to also offer pre-built virtual environments for all HPC users at NCAR, accessible via `conda activate ...`. More information about the availability of software this way will be released at a later date.
 
 Contributions are welcome towards identifying any issues or improving performance capabilities of these installations. Please open an issue or submit a Pull Request to support these offerings or reach out to [cislhelp@ucar.edu](cislhelp@ucar.edu) for any other questions.
