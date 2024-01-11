@@ -13,7 +13,7 @@ The seccond key step for TensorFlow installs is to ensure that environment varia
 1. (Optional) Install [MiniConda](https://docs.conda.io/en/latest/miniconda.html) or [MambaForge](https://github.com/conda-forge/miniforge) to your local machine if not running on NCAR HPC Systems without access to `conda` via `module load conda`. 
 2. Choose to install either the `pip` or the `conda` version of TensorFlow. See below section for a comparison.
 3. Run `sh setup_pip_tf.sh` or `sh setup_conda_tf.sh`. Respond to the first prompt to select a version to install or to install unattended, run `echo "X" | ./setup_pip_tf.sh` where X is a value 1 to 5 corresponding to TensorFlow version 2.11 to 2.15.
-4. Start a batch job on a gpu node. You can start a 60 minute testing job with `qinteractive -l select=1:ncpus=1:mem=20GB:ngpus=1 -q develop -A $PROJECT_ID` on Derecho. 
+4. Start a batch job on a gpu node. You can start a 60 minute testing job with `qinteractive -l select=1:ncpus=1:mem=58GB:ngpus=1 -q develop -A $PROJECT_ID` on Derecho. 
 5. Activate the environment with `module load conda` and `conda activate tfXXXgpu_YYY` where XXX is the version number and YYY is either `conda` or `pip`. 
 6. Run `python test_tf_simple_nn.py` to test that the GPU is detected correctly and that a simple neural net will train on the GPU. 
 
@@ -21,7 +21,7 @@ The seccond key step for TensorFlow installs is to ensure that environment varia
 
 The `pip` installation method provided in this repository is that recommended by Google which provides TensorFlow. The `conda` installation method is community supported and ditributed primarily through `conda-forge`.
 
-In general, pure installations using `conda` are easier to maintain compared to `pip` based installations. It is relatively easy to break dependency requirements when mixing `pip` and `conda` installs. The `pip` version tends to have support for the latest releases of TensorFlow first vefore `conda` installations are made available. Additionally, the `pip` version includes instruction sets for CPU operations up through AVX while the `conda` version provides only up to SSE3. 
+In general, pure installations using `conda` are easier to maintain compared to `pip` based installations. It is relatively easy to break dependency requirements when mixing `pip` and `conda` installs. Alternatively, the `pip` version tends to have support for the latest releases of TensorFlow first vefore `conda` installations are made available. Additionally, the `pip` version includes instruction sets for CPU operations up through AVX while the `conda` version provides only up to SSE3.
 
 Please consider these differences when choosing to install a version of TensorFlow.
 
@@ -34,4 +34,10 @@ This error shows up for TensorFlow 2.14+ as of January 2024. The issue appears r
 E tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:9342] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
 E tensorflow/compiler/xla/stream_executor/cuda/cuda_fft.cc:609] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
 E tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:1518] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+```
+
+This warning shows up for all TensorFlow installs from `pip` or `conda`. Essentially, this indicates the availability, or rather lack thereof, of certain optimized CPU vector optimizations. `pip` installs tend to cover more vector operations than `conda` installs and is thus more optimized for modern CPUs compared to releases through `conda`. For usage of TensorFlow on GPU accelerators, this reduction of optimization for CPU usage is typically not of concern. However, if you would like to build a fully optimized CPU/GPU build, please reference [TensorFlow's guide on installing from source](https://www.tensorflow.org/install/source). You are also encouraged to reach out to [cislhelp@ucar.edu](cislhelp@ucar.edu) about your needs and efforts with regards to source builds of TensorFlow.
+```bash
+This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 ```
