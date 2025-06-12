@@ -4,8 +4,6 @@ This repository contains convenience scripts for installing various popular mach
 
 * [TensorFlow v2.11-2.15](tensorflow)
 * [PyTorch v1.13.1-2.2.0](pytorch)
-* [Jax vX-X (TODO)](jax)
-* [Horovod (TODO)](horovod) for multi-node GPU computing with TensorFlow and PyTorch
 
 All installations will produce an associated YAML file which describes the software environment as installed. This file can be shared with colleagues or archived alongside scientific results to support reproducibility efforts.
 
